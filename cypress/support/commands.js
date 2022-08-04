@@ -40,17 +40,3 @@ Cypress.Commands.add('addProdutos', (produto, tamanho, cor, quantidade) => {
     cy.get('.single_add_to_cart_button').click()
 
 });
-
-let LOCAL_STORAGE_MEMORY = {};
-
-Cypress.Commands.add("preservecookies", () => {
-cy.getCookies().then(cookies => {
-const nameOfCookies = cookies.map(c => c.name)
-Cypress.Cookies.preserveOnce(...nameOfCookies)
-
-})
-});
-
-
-
-
