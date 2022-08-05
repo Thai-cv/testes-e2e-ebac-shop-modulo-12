@@ -43,17 +43,11 @@ context('Exercicio - Testes End-to-end - Fluxo de pedido', () => {
         cy.get('#primary-menu > .menu-item-629 > a').click()
 
         // Fazendo a escolha dos produtos e  Adicionando ao carrinho
-        cy.visit('produtos/page/4/')
-        cy.addProdutos(produto1, tamanho1, cor1, quantidade)
-         
-        cy.visit('produtos/page/4/')
-        cy.addProdutos(produto2, tamanho2, cor2, quantidade)
-       
-        cy.visit('produtos/page/5/')
-        cy.addProdutos(produto3, tamanho3, cor3, quantidade)
-        
-        cy.visit('produtos/page/8/')
-        cy.addProdutos(produto4, tamanho4, cor4, quantidade)
+   
+        cy.addProdutos(4, produto1, tamanho1, cor1, quantidade)
+        cy.addProdutos(4, produto2, tamanho2, cor2, quantidade)
+        cy.addProdutos(5, produto3, tamanho3, cor3, quantidade)
+        cy.addProdutos(8, produto4, tamanho4, cor4, quantidade)
         cy.get('.woocommerce-message > .button').click()
         cy.get('.checkout-button').click()
 
