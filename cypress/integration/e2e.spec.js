@@ -18,10 +18,22 @@ context('Exercicio - Testes End-to-end - Fluxo de pedido', () => {
     });
 
     it('Deve fazer um pedido na loja Ebac Shop de ponta a ponta', () => {
-        var quantidade = 4
-        var produto = 'Autumn Pullie'
-        var tamanho = 'S'
-        var cor = 'Purple'
+        var quantidade = 1
+        var produto1 = 'Autumn Pullie'
+        var tamanho1 = 'S'
+        var cor1 = 'Purple'
+        
+        var produto2 = 'Caesar Warm-Up Pant'
+        var tamanho2 = '36'
+        var cor2 = 'Black'
+        
+        var produto3 = 'Daphne Full-Zip Hoodie'
+        var tamanho3 = 'L'
+        var cor3 = 'Purple'
+
+        var produto4 = 'Lucia Cross-Fit Bra'
+        var tamanho4 = 'M'
+        var cor4 = 'Orange'
 
         // Quero acessar a Loja EBAC e Realizar o Login
         cy.fixture('perfil').then((dados) => {
@@ -32,9 +44,16 @@ context('Exercicio - Testes End-to-end - Fluxo de pedido', () => {
 
         // Fazendo a escolha dos produtos e  Adicionando ao carrinho
         cy.visit('produtos/page/4/')
-        cy.addProdutos(produto, tamanho, cor, quantidade)
-        cy.get('.dropdown-toggle > .mini-cart-items').should('contain', quantidade)
-        cy.get('.woocommerce-message').should('contain', quantidade + ' × “' + produto + '” foram adicionados no seu carrinho.')
+        cy.addProdutos(produto1, tamanho1, cor1, quantidade)
+         
+        cy.visit('produtos/page/4/')
+        cy.addProdutos(produto2, tamanho2, cor2, quantidade)
+       
+        cy.visit('produtos/page/5/')
+        cy.addProdutos(produto3, tamanho3, cor3, quantidade)
+        
+        cy.visit('produtos/page/8/')
+        cy.addProdutos(produto4, tamanho4, cor4, quantidade)
         cy.get('.woocommerce-message > .button').click()
         cy.get('.checkout-button').click()
 
@@ -47,7 +66,10 @@ context('Exercicio - Testes End-to-end - Fluxo de pedido', () => {
         // E validando minha compra ao final 
         cy.get('.page-title').should('contain', 'Pedido recebido')
         cy.get('.woocommerce-notice').should('contain', 'Obrigado. Seu pedido foi recebido.')
-        cy.get('.woocommerce-table__product-name > a').should('contain', produto + ' - ' + tamanho + ', ' + cor)
+        cy.get(':nth-child(1) > .woocommerce-table__product-name > a').should('contain', produto1 + ' - ' + tamanho1 + ', ' + cor1)
+        cy.get(':nth-child(2) > .woocommerce-table__product-name > a').should('contain', produto2 + ' - ' + tamanho2 + ', ' + cor2)
+        cy.get(':nth-child(3) > .woocommerce-table__product-name > a').should('contain', produto3 + ' - ' + tamanho3 + ', ' + cor3)
+        cy.get(':nth-child(4) > .woocommerce-table__product-name > a').should('contain', produto4 + ' - ' + tamanho4 + ', ' + cor4)
         cy.get('.product-quantity').should('contain', quantidade)
     });
 });
