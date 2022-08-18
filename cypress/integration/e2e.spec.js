@@ -44,10 +44,10 @@ context('Exercicio - Testes End-to-end - Fluxo de pedido', () => {
 
         // Fazendo a escolha dos produtos e  Adicionando ao carrinho
    
-        cy.addProdutos(4, produto1, tamanho1, cor1, quantidade)
-        cy.addProdutos(4, produto2, tamanho2, cor2, quantidade)
-        cy.addProdutos(5, produto3, tamanho3, cor3, quantidade)
-        cy.addProdutos(8, produto4, tamanho4, cor4, quantidade)
+        cy.addProdutos(2, produto1, tamanho1, cor1, quantidade)
+        cy.addProdutos(2, produto2, tamanho2, cor2, quantidade)
+        cy.addProdutos(3, produto3, tamanho3, cor3, quantidade)
+        cy.addProdutos(6, produto4, tamanho4, cor4, quantidade)
         cy.get('.woocommerce-message > .button').click()
         cy.get('.checkout-button').click()
 
@@ -58,7 +58,6 @@ context('Exercicio - Testes End-to-end - Fluxo de pedido', () => {
         cy.get('#place_order').click()
 
         // E validando minha compra ao final 
-        cy.get('.page-title').should('contain', 'Pedido recebido')
         cy.get('.woocommerce-notice').should('contain', 'Obrigado. Seu pedido foi recebido.')
         cy.get(':nth-child(1) > .woocommerce-table__product-name > a').should('contain', produto1 + ' - ' + tamanho1 + ', ' + cor1)
         cy.get(':nth-child(2) > .woocommerce-table__product-name > a').should('contain', produto2 + ' - ' + tamanho2 + ', ' + cor2)
