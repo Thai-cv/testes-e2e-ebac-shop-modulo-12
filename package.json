@@ -21,10 +21,10 @@
     "url": ""
   },
   "homepage": "",
-  "devDependencies": {
-    "cypress": "^8.2.0"
+  "devDependencies": {   
   },
   "dependencies": {
+    "cypress": "^8.2.0",
     "faker": "^5.5.3"
   }
 }
