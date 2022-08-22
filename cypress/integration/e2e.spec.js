@@ -64,7 +64,7 @@ context('Exercicio - Testes End-to-end - Fluxo de pedido', () => {
         cy.get(':nth-child(2) > .woocommerce-table__product-name > a').should('contain', produto2 + ' - ' + tamanho2 + ', ' + cor2)
         cy.get(':nth-child(3) > .woocommerce-table__product-name > a').should('contain', produto3 + ' - ' + tamanho3 + ', ' + cor3)
         cy.get(':nth-child(4) > .woocommerce-table__product-name > a').should('contain', produto4 + ' - ' + tamanho4 + ', ' + cor4)
-        cy.get('.product-quantity').should('contain', quantidade)
+        cy.get('.product-quantity',{ timeout: 100000}).should('contain', quantidade)
     });
 });
 
