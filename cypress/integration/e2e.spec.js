@@ -58,7 +58,7 @@ context('Exercicio - Testes End-to-end - Fluxo de pedido', () => {
         cy.get('#place_order').click()
 
         // E validando minha compra ao final 
-        cy.get('.page-title').should('contain', 'Pedido recebido')
+        cy.get('.page-title', { timeout: 100000}).should('be.visible').should('contain', 'Pedido recebido')
         cy.get('.woocommerce-notice', { timeout: 100000}).should('be.visible').should('contain', 'Obrigado. Seu pedido foi recebido.')
         cy.get(':nth-child(1) > .woocommerce-table__product-name > a').should('contain', produto1 + ' - ' + tamanho1 + ', ' + cor1)
         cy.get(':nth-child(2) > .woocommerce-table__product-name > a').should('contain', produto2 + ' - ' + tamanho2 + ', ' + cor2)
