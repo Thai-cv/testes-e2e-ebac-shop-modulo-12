@@ -20,7 +20,7 @@ context('Exercicio - Testes End-to-end - Fluxo de pedido', () => {
     it('Deve fazer um pedido na loja Ebac Shop de ponta a ponta', () => {
         var quantidade = 1
         var produto1 = 'Autumn Pullie'
-        var tamanho1 = 'S'
+        var tamanho1 = 'M'
         var cor1 = 'Purple'
         
         var produto2 = 'Caesar Warm-Up Pant'
@@ -58,7 +58,8 @@ context('Exercicio - Testes End-to-end - Fluxo de pedido', () => {
         cy.get('#place_order').click()
 
         // E validando minha compra ao final 
-        cy.get('.woocommerce-notice').should('contain', 'Obrigado. Seu pedido foi recebido.')
+        cy.get('.page-title').should('contain', 'Pedido recebido')
+        cy.get('.woocommerce-notice', { timeout: 100000}).should('be.visible').should('contain', 'Obrigado. Seu pedido foi recebido.')
         cy.get(':nth-child(1) > .woocommerce-table__product-name > a').should('contain', produto1 + ' - ' + tamanho1 + ', ' + cor1)
         cy.get(':nth-child(2) > .woocommerce-table__product-name > a').should('contain', produto2 + ' - ' + tamanho2 + ', ' + cor2)
         cy.get(':nth-child(3) > .woocommerce-table__product-name > a').should('contain', produto3 + ' - ' + tamanho3 + ', ' + cor3)
