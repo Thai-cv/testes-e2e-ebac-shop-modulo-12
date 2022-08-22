@@ -7,7 +7,6 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/Thai-cv/testes-e2e-ebac-shop-modulo-12.git'
             }
         }
-        
                 
         stage('Instalar dependecias') {
             steps {
